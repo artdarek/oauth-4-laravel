@@ -14,9 +14,11 @@
     ],
     "require": {
         "php": ">=5.3",     
-        "illuminate/support": "4.0.*",        
         "lusitanian/oauth": "dev-master"
     },
+    "require-dev": {
+        "illuminate/support": "4.0.*"
+    },    
     "require-all": true,
     "autoload": {
         "psr-0": {
