@@ -1,8 +1,7 @@
 {
-    "name": "artdarek/oauth",
-    "version": "0.0.1",
+    "name": "artdarek/OAuth-4-Laravel",
     "type": "library",
-    "description": "Laravel OAuth IoC wrapper Library",
+    "description": "OAuth Service Provider for Laravel 4",
     "keywords": ["OAuth", "Lusitanian", "laravel", "php"],
     "homepage": "https://github.com/artdarek/OAuth-4-Laravel",
     "license": "MIT",
@@ -15,14 +14,14 @@
     ],
     "require": {
         "php": ">=5.3",     
-        "illuminate/support": "4.0.*"        
+        "illuminate/support": "4.0.*",        
         "lusitanian/oauth": "dev-master"
     },
-
     "require-all": true,
-    "minimum-stability" : "dev",
-    
     "autoload": {
-        "psr-0": { "Artdarek\\OAuth\\": "src/" }
-    }
+        "psr-0": {
+            "Artdarek\\OAuth": "src/"
+        }
+    },    
+    "minimum-stability": "dev"    
 }
