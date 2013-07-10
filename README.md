@@ -17,13 +17,13 @@ Optionally, add a second parameter with the URL which the service needs to redir
 Add an alias to the bottom of app/config/app.php
 
 ```php
-'OAuth' => 'artdarek\OAuth\facade\OAuth',
+'OAuth' => 'Artdarek\OAuth\facade\OAuth',
 ```
 
 and register this service provider at the bottom of the `$providers` array:
 
 ```php
-'artdarek\OAuth\OAuthServiceProvider',
+'Artdarek\OAuth\OAuthServiceProvider',
 ```
 
 ### Credentials
