@@ -36,20 +36,20 @@ class OAuth {
         $service_factory = new ServiceFactory();
 
         // get storage
-        $storage_name = Config::get('oauth.Storage') ?: 'Session'; // default
+        $storage_name = Config::get('oauth-4-laravel::storage') ?: 'Session'; // default
 
         $cn = "\\OAuth\Common\\Storage\\$storage_name";
         $storage = new $cn();
 
         // create credentials object
         $credentials = new Credentials(
-            Config::get("oauth.consumers.$service.client_id"),
-            Config::get("oauth.consumers.$service.client_secret"),
+            Config::get("oauth-4-laravel::consumers.$service.client_id"),
+            Config::get("oauth-4-laravel::consumers.$service.client_secret"),
             $url ?: URL::current()
         );
 
         // get scope (default to empty array)
-        $scope = Config::get("oauth.consumers.$service.scope") ?: array();
+        $scope = Config::get("oauth-4-laravel::consumers.$service.scope") ?: array();
 
         // return the service consumer object
         return $service_factory->createService($service, $credentials, $storage, $scope);

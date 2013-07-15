@@ -1,4 +1,4 @@
-<?php namespace Artdarek\OAuth\facade;
+<?php namespace Artdarek\OAuth\Facade;
 
 use Illuminate\Support\Facades\Facade;
 
