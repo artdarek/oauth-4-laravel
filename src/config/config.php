@@ -11,7 +11,7 @@ return array(
 	/**
 	 * Storage
 	 */
-	'storage' => '', 
+	'storage' => 'Session', 
 
 	/**
 	 * Consumers

@@ -8,7 +8,31 @@ Just follow the steps below and you will be able to get a [service class object]
 $fb = OAuth::consumer('Facebook');
 ```
 
-Optionally, add a second parameter with the URL which the service needs to redirect to.
+Optionally, add a second parameter with the URL which the service needs to redirect to:
+
+```php
+$fb = OAuth::consumer('Facebook','http://url.to.redirect.to');
+```
+
+## Installation
+
+Add oauth-4-laravel to your composer.json file:
+
+"require": {
+  "artdarek/oauth-4-laravel": "dev-master"
+}
+
+Use composer to install this package.
+
+```
+$ composer update
+```
+
+Create configuration file using artisan
+
+```
+$ php artisan config:publish artdarek/oauth-4-laravel
+```
 
 ## How to integrate
 
@@ -28,20 +52,38 @@ and register this service provider at the bottom of the `$providers` array:
 
 ### Credentials
 
-Add your credentials to app/config/oauth.php
+Add your credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
 
 ```php
-return array(
+return array( 
+	
+	/*
+	|--------------------------------------------------------------------------
+	| oAuth Config
+	|--------------------------------------------------------------------------
+	*/
 
-    'storage' => 'Session',
+	/**
+	 * Storage
+	 */
+	'storage' => 'Session', 
 
-    'consumers' => array(
+	/**
+	 * Consumers
+	 */
+	'consumers' => array(
+
+		/**
+		 * Facebook
+		 */
         'Facebook' => array(
             'client_id'     => '',
             'client_secret' => '',
-            'scope' => array(),
-        ),
-    ),
+            'scope'         => [],
+        ),		
+
+	)
+
 );
 ```
 
