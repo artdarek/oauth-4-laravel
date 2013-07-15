@@ -18,9 +18,11 @@ $fb = OAuth::consumer('Facebook','http://url.to.redirect.to');
 
 Add oauth-4-laravel to your composer.json file:
 
+```
 "require": {
   "artdarek/oauth-4-laravel": "dev-master"
 }
+```
 
 Use composer to install this package.
 
