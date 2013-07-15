@@ -20,10 +20,7 @@
         "illuminate/support": "4.0.*"
     },    
     "require-all": true,
-    "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],        
+    "autoload": {    
         "psr-0": {
             "Artdarek\\OAuth": "src/"
         }
