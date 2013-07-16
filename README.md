@@ -1,5 +1,8 @@
 # OAuth wrapper for Laravel 4
 
+oauth-4-laravel is a simple wrapper for Lusitanian/[PHPoAuthLib](https://github.com/Lusitanian/PHPoAuthLib) 
+witch provides oAuth support in PHP 5.3+ and is very easy to integrate with any project which requires an oAuth client.
+
 ## Usage
 
 Just follow the steps below and you will be able to get a [service class object](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/OAuth2/Service) with this one rule:
