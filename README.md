@@ -89,4 +89,10 @@ return array(
 );
 ```
 
-The `Storage` attribute is optional and defaults to `Session`. Other [options](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/Common/Storage).
+The `Storage` attribute is optional and defaults to `Session`. 
+Other [options](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/Common/Storage).
+
+## Examples
+
+For examples go [here](https://github.com/Lusitanian/PHPoAuthLib/tree/master/examples)
+
