@@ -14,6 +14,30 @@ witch provides oAuth support in PHP 5.3+ and is very easy to integrate with any 
 - [Basic usage](#basic-usage)
 - [More usage examples](#more-usage-examples)
 
+## Supported services
+
+The library supports both oAuth 1.x and oAuth 2.0 compliant services. A list of currently implemented services can be found below. More services will be implemented soon.
+
+Included service implementations:
+
+ - OAuth1
+   - Twitter
+   - FitBit
+
+ - OAuth2
+   - Google
+   - Microsoft
+   - Facebook
+   - GitHub
+   - BitLy
+   - Yammer
+   - SoundCloud
+   - Foursquare
+   - Instagram
+   - LinkedIn
+   - Box
+   - Tumblr
+   - Vkontakte
 
 ## Installation
 
