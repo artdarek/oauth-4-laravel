@@ -1,21 +1,19 @@
 # OAuth wrapper for Laravel 4
 
+---
+
 oauth-4-laravel is a simple laravel 4 service provider for [Lusitanian/PHPoAuthLib](https://github.com/Lusitanian/PHPoAuthLib) 
 witch provides oAuth support in PHP 5.3+ and is very easy to integrate with any project which requires an oAuth client.
 
-## Usage
+---
 
-Just follow the steps below and you will be able to get a [service class object](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/OAuth2/Service) with this one rule:
+- [Installation](#installation)
+- [Registering the Package](#registering-the-package)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Basic usage](#basic-usage)
+- [More usage examples](#more-usage-examples)
 
-```php
-$fb = OAuth::consumer('Facebook');
-```
-
-Optionally, add a second parameter with the URL which the service needs to redirect to:
-
-```php
-$fb = OAuth::consumer('Facebook','http://url.to.redirect.to');
-```
 
 ## Installation
 
@@ -39,9 +37,9 @@ Create configuration file using artisan
 $ php artisan config:publish artdarek/oauth-4-laravel
 ```
 
-## How to integrate
+## Configuration
 
-### Alias
+### Registering the Package
 
 Add an alias to the bottom of app/config/app.php
 
@@ -81,11 +79,11 @@ return array(
 		/**
 		 * Facebook
 		 */
-        'Facebook' => array(
-            'client_id'     => '',
-            'client_secret' => '',
-            'scope'         => [],
-        ),		
+	        'Facebook' => array(
+	            'client_id'     => '',
+	            'client_secret' => '',
+	            'scope'         => [],
+	        ),		
 
 	)
 
@@ -95,7 +93,23 @@ return array(
 The `Storage` attribute is optional and defaults to `Session`. 
 Other [options](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/Common/Storage).
 
-## Examples
+## Usage
+
+### Basic usage
+
+Just follow the steps below and you will be able to get a [service class object](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/OAuth2/Service) with this one rule:
+
+```php
+$fb = OAuth::consumer('Facebook');
+```
+
+Optionally, add a second parameter with the URL which the service needs to redirect to:
+
+```php
+$fb = OAuth::consumer('Facebook','http://url.to.redirect.to');
+```
+
+### More usage examples
 
 For examples go [here](https://github.com/Lusitanian/PHPoAuthLib/tree/master/examples)
 
