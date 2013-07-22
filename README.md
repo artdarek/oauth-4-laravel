@@ -6,7 +6,8 @@ oauth-4-laravel is a simple laravel 4 service provider for [Lusitanian/PHPoAuthL
 witch provides oAuth support in PHP 5.3+ and is very easy to integrate with any project which requires an oAuth client.
 
 ---
-
+ 
+- [Supported services](#supported-services)
 - [Installation](#installation)
 - [Registering the Package](#registering-the-package)
 - [Configuration](#configuration)
