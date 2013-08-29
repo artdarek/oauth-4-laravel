@@ -69,7 +69,7 @@ $ php artisan config:publish artdarek/oauth-4-laravel
 Add an alias to the bottom of app/config/app.php
 
 ```php
-'OAuth' => 'Artdarek\OAuth\facade\OAuth',
+'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
 ```
 
 and register this service provider at the bottom of the `$providers` array:
