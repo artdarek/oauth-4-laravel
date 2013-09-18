@@ -143,10 +143,10 @@ Add your Facebook credentials to ``app/config/packages/artdarek/oauth-4-laravel/
 
 ```php
 'Facebook' => array(
-	            'client_id'     => 'Your Facebook client ID',
-	            'client_secret' => 'Your Facebook Client Secret',
-	            'scope'         => ['email','read_friendlists','user_online_presence'],
-	        ),	
+    'client_id'     => 'Your Facebook client ID',
+    'client_secret' => 'Your Facebook Client Secret',
+    'scope'         => array('email','read_friendlists','user_online_presence'),
+),	
 ```
 In your Controller use the following code:
 
@@ -202,17 +202,17 @@ Add your Google credentials to ``app/config/packages/artdarek/oauth-4-laravel/co
 
 ```php
 'Google' => array(
-	            'client_id'     => 'Your Google client ID',
-	            'client_secret' => 'Your Google Client Secret',
-	            'scope'         => ['userinfo_email', 'userinfo_profile'],
-	        ),	
+    'client_id'     => 'Your Google client ID',
+    'client_secret' => 'Your Google Client Secret',
+    'scope'         => array('userinfo_email', 'userinfo_profile'),
+),	
 ```
 In your Controller use the following code:
 
 ```php
 public function loginWithGoogle()
     {
-       // get data from input
+                // get data from input
                 $code = Input::get( 'code' );
 
                 // get google service
