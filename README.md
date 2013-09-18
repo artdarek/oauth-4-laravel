@@ -158,17 +158,17 @@ In your Controller use the following code:
  */
 
 public function loginWithFacebook() {
-
-        // get data from input
-        $code = Input::get( 'code' );
-
-        // get fb service
-        $fb = OAuth::consumer( 'Facebook' );
-
-        // check if code is valid
-
-        // if code is provided get user data and sign in
-        if ( !empty( $code ) ) {
+	
+	// get data from input
+	$code = Input::get( 'code' );
+	
+	// get fb service
+	$fb = OAuth::consumer( 'Facebook' );
+	
+	// check if code is valid
+	
+	// if code is provided get user data and sign in
+	if ( !empty( $code ) ) {
 		
 		// This was a callback request from google, get the token
 		$token = $fb->requestAccessToken( $code );
@@ -182,16 +182,16 @@ public function loginWithFacebook() {
 		//Var_dump
 		//display whole array().
 		dd($result);
-               
-        }
-        // if not ask for permission first
-        else {
-	        // get fb authorization
-	        $url = $fb->getAuthorizationUri();
 	
-	        // return to facebook login url
-	        return Response::make()->header( 'Location', (string)$url );
-        }
+	}
+	// if not ask for permission first
+	else {
+		// get fb authorization
+		$url = $fb->getAuthorizationUri();
+		
+		// return to facebook login url
+		return Response::make()->header( 'Location', (string)$url );
+	}
 
 }
 ```
