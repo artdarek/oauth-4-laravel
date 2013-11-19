@@ -56,7 +56,7 @@ class OAuth
     {
         // get storage object
         $storage_name = Config::get('oauth-4-laravel::storage', 'Session');
-        $storage = createStorageInstance( $storage_name );
+        $storage = $this->createStorageInstance( $storage_name );
 
         // create credentials object
         $credentials = new Credentials(
