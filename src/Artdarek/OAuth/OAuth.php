@@ -1,45 +1,62 @@
-<?php namespace Artdarek\OAuth;
+<?php 
+/**
+ * @author     Dariusz Prząda <artdarek@gmail.com>
+ * @copyright  Copyright (c) 2013
+ * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+ */
 
-/*
-|--------------------------------------------------------------------------
-| How to use
-|--------------------------------------------------------------------------
-| eg:
-|
-| $fb = OAuth::consumer('Facebook'); 
-|
-| returns a configured consumer object
-| class details found here:
-|     https://github.com/Lusitanian/PHPoAuthLib/blob/master/src/OAuth/OAuth2/Service/Facebook.php
-|
-| credentials and scope are loaded from config/oauth.php
-|
-*/
+namespace Artdarek\OAuth;
 
 use Illuminate\Support\ServiceProvider;
-
-use \OAuth\ServiceFactory;
-use \OAuth\Common\Consumer\Credentials;
 
 use \Config;
 use \URL;
 
-class OAuth {
+use \OAuth\ServiceFactory;
+use \OAuth\Common\Consumer\Credentials;
+
+class OAuth 
+{
+    /**
+     * @var ServiceFactory
+     */
+    private $serviceFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+
+        // create a service factory
+        $this->serviceFactory = new ServiceFactory();
+
+    } 
+
+    /**
+     * Create storage instance
+     *
+     * @param string $storageName
+     * @return OAuth\Common\\Storage
+     */
+    public createStorageInstance($storageName)
+    {
+        $storageClass = "\\OAuth\Common\\Storage\\$storage_name";
+        $storage = new $storageClass();
+
+        return $storage;
+    }
 
     /**
      * @param  string $service
+     * @param  string $url
+     * @param  array  $scope
      * @return \OAuth\Common\Service\AbstractService
      */
-    public function consumer( $service, $url = null ) {
-
-        // create a factory. but remember: this is not java.
-        $service_factory = new ServiceFactory();
-
-        // get storage
-        $storage_name = Config::get('oauth-4-laravel::storage') ?: 'Session'; // default
-
-        $cn = "\\OAuth\Common\\Storage\\$storage_name";
-        $storage = new $cn();
+    public function consumer( $service, $url = null, $scope = null ) 
+    {
+        // get storage object
+        $storage_name = Config::get('oauth-4-laravel::storage', 'Session');
+        $storage = createStorageInstance( $storage_name );
 
         // create credentials object
         $credentials = new Credentials(
@@ -48,11 +65,15 @@ class OAuth {
             $url ?: URL::current()
         );
 
-        // get scope (default to empty array)
-        $scope = Config::get("oauth-4-laravel::consumers.$service.scope") ?: array();
+        // check if scopes were provided
+        if (is_null($scope))
+        {
+            // get scope from config (default to empty array)
+            $scope = Config::get("oauth-4-laravel::consumers.$service.scope", array() );
+        }
 
         // return the service consumer object
-        return $service_factory->createService($service, $credentials, $storage, $scope);
+        return $this->serviceFactory->createService($service, $credentials, $storage, $scope);
 
     }
 }
