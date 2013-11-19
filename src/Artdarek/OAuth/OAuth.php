@@ -40,7 +40,7 @@ class OAuth
      */
     public function createStorageInstance($storageName)
     {
-        $storageClass = "\\OAuth\Common\\Storage\\$storage_name";
+        $storageClass = "\\OAuth\Common\\Storage\\$storageName";
         $storage = new $storageClass();
 
         return $storage;
