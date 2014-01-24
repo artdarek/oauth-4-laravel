@@ -40,10 +40,22 @@ class OAuth
      */
     public function createStorageInstance($storageName)
     {
-        $storageClass = "\\OAuth\Common\\Storage\\$storageName";
+        $storageClass = "\\OAuth\\Common\\Storage\\$storageName";
         $storage = new $storageClass();
 
         return $storage;
+    }
+    
+    /**
+     * Set the http client object
+     *
+     * @param string $httpClientName
+     * @return void
+     */
+    public function setHttpClient($httpClientName)
+    {
+        $httpClientClass = "\\OAuth\\Common\\Http\\Client\\$httpClientName";
+        $this->serviceFactory->setHttpClient(new $httpClientClass());
     }
 
     /**
