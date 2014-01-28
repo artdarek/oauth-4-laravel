@@ -24,13 +24,20 @@ class OAuth
 
     /**
      * Constructor
+     *
+     * @param ServiceFactory $serviceFactory Optional dependency injection.
+     *     If not provided, a ServiceFactory instance will be constructed.
      */
-    public function __construct() {
+    public function __construct(ServiceFactory $serviceFactory = null)
+    {
 
-        // create a service factory
-        $this->serviceFactory = new ServiceFactory();
+        if (null === $serviceFactory) {
+            // Create the service factory
+            $serviceFactory = new ServiceFactory();
+        }
 
-    } 
+        $this->serviceFactory = $serviceFactory;
+    }
 
     /**
      * Create storage instance
