@@ -56,31 +56,21 @@ Use composer to install this package.
 $ composer update
 ```
 
-Create configuration file using artisan
+## Configuration
+
+There are two ways to configure oauth-4-laravel.
+You can choose the most convenient way for you. 
+You can use package config file which can be 
+generated through command line by artisan (option 1) or 
+you can simply create a config file called ``oauth-4-laravel.php`` in your config directory (option 2).
+
+(Option 1) Create configuration file for package using artisan command
 
 ```
 $ php artisan config:publish artdarek/oauth-4-laravel
 ```
 
-## Configuration
-
-### Registering the Package
-
-Add an alias to the bottom of app/config/app.php
-
-```php
-'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
-```
-
-and register this service provider at the bottom of the `$providers` array:
-
-```php
-'Artdarek\OAuth\OAuthServiceProvider',
-```
-
-### Credentials
-
-Add your credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
+(Option 2) Create configuration file manually in config directory ``app/config/oauth-4-laravel.php`` and put there code from below.
 
 ```php
 return array( 
@@ -114,6 +104,26 @@ return array(
 
 );
 ```
+
+
+### Registering the Package
+
+Add an alias to the bottom of app/config/app.php
+
+```php
+'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
+```
+
+and register this service provider at the bottom of the `$providers` array:
+
+```php
+'Artdarek\OAuth\OAuthServiceProvider',
+```
+
+### Credentials
+
+Add your credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php`` or ``app/config/oauth-4-laravel.php`` (depending on which option of configuration you choose)
+
 
 The `Storage` attribute is optional and defaults to `Session`. 
 Other [options](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/Common/Storage).
