@@ -74,13 +74,13 @@ class OAuth
     public function consumer( $service, $url = null, $scope = null ) 
     {
         // get storage object
-        $storage_name = Config::get('oauth-4-laravel::storage', 'Session');
+        $storage_name = Config::get('oauth-4-laravel.storage', 'Session');
         $storage = $this->createStorageInstance( $storage_name );
 
         // create credentials object
         $credentials = new Credentials(
-            Config::get("oauth-4-laravel::consumers.$service.client_id"),
-            Config::get("oauth-4-laravel::consumers.$service.client_secret"),
+            Config::get("oauth-4-laravel.consumers.$service.client_id"),
+            Config::get("oauth-4-laravel.consumers.$service.client_secret"),
             $url ?: URL::current()
         );
 
@@ -88,7 +88,7 @@ class OAuth
         if (is_null($scope))
         {
             // get scope from config (default to empty array)
-            $scope = Config::get("oauth-4-laravel::consumers.$service.scope", array() );
+            $scope = Config::get("oauth-4-laravel.consumers.$service.scope", array() );
         }
 
         // return the service consumer object

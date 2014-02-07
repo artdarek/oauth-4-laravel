@@ -56,12 +56,6 @@ Use composer to install this package.
 $ composer update
 ```
 
-Create configuration file using artisan
-
-```
-$ php artisan config:publish artdarek/oauth-4-laravel
-```
-
 ## Configuration
 
 ### Registering the Package
@@ -80,7 +74,11 @@ and register this service provider at the bottom of the `$providers` array:
 
 ### Credentials
 
-Add your credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
+Create a config file ``app/config/oauth-4-laravel.php`` and add your credentials
+
+if you need different configs for different environments create the config file 
+for each environment you want, like ``app/config/production/oauth-4-laravel.php``
+or ``app/config/staging/oauth-4-laravel.php``
 
 ```php
 return array( 
