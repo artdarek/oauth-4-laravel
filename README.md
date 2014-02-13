@@ -185,7 +185,7 @@ public function loginWithFacebook() {
 	// if code is provided get user data and sign in
 	if ( !empty( $code ) ) {
 		
-		// This was a callback request from google, get the token
+		// This was a callback request from facebook, get the token
 		$token = $fb->requestAccessToken( $code );
 		
 		// Send a request with it
