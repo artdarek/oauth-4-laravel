@@ -205,7 +205,7 @@ public function loginWithFacebook() {
 		$url = $fb->getAuthorizationUri();
 		
 		// return to facebook login url
-		return Response::make()->header( 'Location', (string)$url );
+		 return Redirect::to( (string)$url );
 	}
 
 }
@@ -258,7 +258,7 @@ public function loginWithGoogle() {
 		$url = $googleService->getAuthorizationUri();
 		
 		// return to facebook login url
-		return Response::make()->header( 'Location', (string)$url );
+		return Redirect::to( (string)$url );
 	}
 }
 ```
@@ -309,7 +309,7 @@ In your Controller use the following code:
             $url = $linkedinService->getAuthorizationUri(array('state'=>'DCEEFWF45453sdffef424'));
 
             // return to linkedin login url
-            return Response::make()->header( 'Location', (string)$url );
+            return Redirect::to( (string)$url );
         }
 
 
