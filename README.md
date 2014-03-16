@@ -56,6 +56,29 @@ Use composer to install this package.
 $ composer update
 ```
 
+### Registering the Package
+
+Register the service provider within the ```providers``` array found in ```app/config/app.php```:
+
+```php
+'providers' => array(
+	// ...
+	
+	'Artdarek\OAuth\OAuthServiceProvider'
+)
+```
+
+Add an alias within the ```aliases``` array found in ```app/config/app.php```:
+
+
+```php
+'aliases' => array(
+	// ...
+	
+	'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
+)
+```
+
 ## Configuration
 
 There are two ways to configure oauth-4-laravel.
@@ -108,21 +131,6 @@ return array(
 	)
 
 );
-```
-
-
-### Registering the Package
-
-Add an alias to the bottom of app/config/app.php
-
-```php
-'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
-```
-
-and register this service provider at the bottom of the `$providers` array:
-
-```php
-'Artdarek\OAuth\OAuthServiceProvider',
 ```
 
 ### Credentials
