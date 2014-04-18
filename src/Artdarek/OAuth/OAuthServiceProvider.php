@@ -51,7 +51,7 @@ class OAuthServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array();
+        return array('oauth');
     }
 
 }
