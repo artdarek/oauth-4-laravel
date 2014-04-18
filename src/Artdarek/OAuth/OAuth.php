@@ -55,20 +55,23 @@ class OAuth
      *
      * @param string $service
      */
-    public function setConfig( $service )
+    public function setConfig($service)
     {
         // if config/oauth-4-laravel.php exists use this one
-        if ( Config::get('oauth-4-laravel.consumers') != null ) {
+        if (Config::get('oauth-4-laravel.consumers') != null)
+        {
 
             $this->_client_id = Config::get("oauth-4-laravel.consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel.consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array() );
+            $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array());
 
+        }
         // else try to find config in packages configs
-        } else {
+        else
+        {
             $this->_client_id = Config::get("oauth-4-laravel::consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel::consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array() );
+            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array());
         }
     }
 
@@ -90,10 +93,10 @@ class OAuth
      * @param  array  $scope
      * @return \OAuth\Common\Service\AbstractService
      */
-    public function consumer( $service, $url = null, $scope = null )
+    public function consumer($service, $url = null, $scope = null)
     {
         // get config
-        $this->setConfig( $service );
+        $this->setConfig($service);
 
         // get storage object
         $storage =
