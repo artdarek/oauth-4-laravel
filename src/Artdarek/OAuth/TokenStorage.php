@@ -39,11 +39,25 @@ class TokenStorage implements TokenStorageInterface
     }
 
     /**
+     * Creates name where token is stored
+     * @param  string $service Name of the service
+     * @return string          Dot delimited key
+     */
+    protected function storageName($service)
+    {
+        return $this->sessionVariable.'.'.$service;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function retrieveAccessToken($service)
     {
+        $name = $this->storageName($service);
+        if ($token = $this->session->get($name))
+            return unserialize($token);
 
+        throw new TokenNotFoundException('Token not found in session, are you sure you stored it?');
     }
 
     /**
@@ -51,7 +65,10 @@ class TokenStorage implements TokenStorageInterface
      */
     public function storeAccessToken($service, TokenInterface $token)
     {
+        $name = $this->storageName($service);
+        $this->session->put($name, serialize($token));
 
+        return $this;
     }
 
     /**
@@ -59,7 +76,8 @@ class TokenStorage implements TokenStorageInterface
      */
     public function hasAccessToken($service)
     {
-
+        $name = $this->storageName($service);
+        return $this->session->has($name);
     }
 
     /**
@@ -67,7 +85,10 @@ class TokenStorage implements TokenStorageInterface
      */
     public function clearToken($service)
     {
+        $name = $this->storageName($service);
+        $this->session->remove($service);
 
+        return $this;
     }
 
     /**
@@ -75,7 +96,9 @@ class TokenStorage implements TokenStorageInterface
      */
     public function clearAllTokens()
     {
+        $this->session->remove($this->sessionVariable);
 
+        return $this;
     }
 }
 
