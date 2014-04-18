@@ -23,6 +23,11 @@ class OAuth
     private $_serviceFactory;
 
     /**
+     * @var TokenStorage
+     */
+    private $_storage;
+
+    /**
      * Client ID from config
      * @var string
      */
@@ -45,9 +50,10 @@ class OAuth
      *
      * @param ServiceFactory $serviceFactory
      */
-    public function __construct(ServiceFactory $serviceFactory)
+    public function __construct(ServiceFactory $serviceFactory, TokenStorage $storage)
     {
         $this->_serviceFactory = $serviceFactory;
+        $this->_storage = $storage;
     }
 
     /**
@@ -107,9 +113,6 @@ class OAuth
         // get config
         $this->loadConfig($service);
 
-        // get storage object
-        $storage =
-
         // create credentials object
         $credentials = new Credentials(
             $this->_client_id,
@@ -122,7 +125,7 @@ class OAuth
             $scope = $this->_scope ? $this->_scope : array();
 
         // return the service consumer object
-        return $this->_serviceFactory->createService($service, $credentials, $storage, $scope);
+        return $this->_serviceFactory->createService($service, $credentials, $this->_storage, $scope);
 
     }
 }

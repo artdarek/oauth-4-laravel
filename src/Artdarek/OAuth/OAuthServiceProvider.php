@@ -18,7 +18,7 @@ class OAuthServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Bootstrap the application events.
@@ -40,7 +40,10 @@ class OAuthServiceProvider extends ServiceProvider
         // Register 'oauth'
         $this->app['oauth'] = $this->app->share(function($app)
         {
-            return new OAuth(new ServiceFactory());
+            $sf = new ServiceFactory();
+            $ts = new TokenStorage(\App::make('session'));
+
+            return new OAuth($sf, $ts);
         });
     }
 
