@@ -45,12 +45,8 @@ class OAuth
      *
      * @param ServiceFactory $serviceFactory - (Dependency injection) If not provided, a ServiceFactory instance will be constructed.
      */
-    public function __construct(ServiceFactory $serviceFactory = null)
+    public function __construct(ServiceFactory $serviceFactory)
     {
-        if (null === $serviceFactory) {
-            // Create the service factory
-            $serviceFactory = new ServiceFactory();
-        }
         $this->_serviceFactory = $serviceFactory;
     }
 
