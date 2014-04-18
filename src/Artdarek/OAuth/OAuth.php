@@ -43,7 +43,7 @@ class OAuth
     /**
      * Constructor
      *
-     * @param ServiceFactory $serviceFactory - (Dependency injection) If not provided, a ServiceFactory instance will be constructed.
+     * @param ServiceFactory $serviceFactory
      */
     public function __construct(ServiceFactory $serviceFactory)
     {
@@ -55,24 +55,33 @@ class OAuth
      *
      * @param string $service
      */
-    public function setConfig($service)
+    public function loadConfig($service)
     {
-        // if config/oauth-4-laravel.php exists use this one
-        if (Config::get('oauth-4-laravel.consumers') != null)
-        {
+        $this->_client_id = $this->getConfig('consumers.'.$service.'.client_id');
+        $this->_client_secret = $this->getConfig('consumers.'.$service.'.client_secret');
+        $this->_scope = $this->getConfig('consumers.'.$service.'.scope');
+    }
 
-            $this->_client_id = Config::get("oauth-4-laravel.consumers.$service.client_id");
-            $this->_client_secret = Config::get("oauth-4-laravel.consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array());
+    /**
+     * Get config value for key
+     * Looks at 3 different locations where they can be placed
+     * @param  string $key   OAuth config value
+     * @return string        Config value
+     */
+    protected function getConfig($key)
+    {
+        if ($value = Config::get('oauth.'.$key))
+            return $value;
+        /**
+         * @deprecated This value should get removed in future releases
+         * As it is too long and contains unecessary information
+         */
+        if ($value = Config::get('oauth-4-laravel.'.$key))
+            return $value;
 
-        }
-        // else try to find config in packages configs
-        else
-        {
-            $this->_client_id = Config::get("oauth-4-laravel::consumers.$service.client_id");
-            $this->_client_secret = Config::get("oauth-4-laravel::consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array());
-        }
+        if ($value = Config::get('oauth-4-laravel::'.$key))
+            return $value;
+
     }
 
     /**
@@ -83,7 +92,7 @@ class OAuth
      */
     public function setHttpClient($httpClientName)
     {
-        $httpClientClass = "\\OAuth\\Common\\Http\\Client\\$httpClientName";
+        $httpClientClass = '\OAuth\Common\Http\Client\$httpClientName';
         $this->_serviceFactory->setHttpClient(new $httpClientClass());
     }
 
@@ -96,7 +105,7 @@ class OAuth
     public function consumer($service, $url = null, $scope = null)
     {
         // get config
-        $this->setConfig($service);
+        $this->loadConfig($service);
 
         // get storage object
         $storage =
@@ -110,10 +119,7 @@ class OAuth
 
         // check if scopes were provided
         if (is_null($scope))
-        {
-            // get scope from config (default to empty array)
-            $scope = $this->_scope;
-        }
+            $scope = $this->_scope ? $this->_scope : array();
 
         // return the service consumer object
         return $this->_serviceFactory->createService($service, $credentials, $storage, $scope);
