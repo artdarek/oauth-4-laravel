@@ -20,23 +20,39 @@ The library supports both oAuth 1.x and oAuth 2.0 compliant services. A list of 
 Included service implementations:
 
  - OAuth1
-   - Twitter
-   - FitBit
-
- - OAuth2
-   - Google
-   - Microsoft
-   - Facebook
-   - GitHub
-   - BitLy
-   - Yammer
-   - SoundCloud
-   - Foursquare
-   - Instagram
-   - LinkedIn
-   - Box
-   - Tumblr
-   - Vkontakte
+    - BitBucket
+    - Etsy
+    - FitBit
+    - Flickr
+    - Scoop.it!
+    - Tumblr
+    - Twitter
+    - Xing
+    - Yahoo
+- OAuth2
+    - Amazon
+    - BitLy
+    - Box
+    - Dailymotion
+    - Dropbox
+    - Facebook
+    - Foursquare
+    - GitHub
+    - Google
+    - Harvest
+    - Heroku
+    - Instagram
+    - LinkedIn
+    - Mailchimp
+    - Microsoft
+    - PayPal
+    - Pocket
+    - Reddit
+    - RunKeeper
+    - SoundCloud
+    - Vkontakte
+    - Yammer
+- more to come!
 
 To learn more about Lusitanian/PHPoAuthLib go [here](https://github.com/Lusitanian/PHPoAuthLib) 
 
