@@ -17,7 +17,7 @@
         "lusitanian/oauth": "~0.3"
     },
     "require-dev": {
-        "illuminate/support": "4.0.*"
+        "illuminate/support": "~4"
     },    
     "require-all": true,
     "autoload": {    
