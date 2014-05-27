@@ -29,7 +29,7 @@ Included service implementations:
     - Twitter
     - Xing
     - Yahoo
-- OAuth2
+ - OAuth2
     - Amazon
     - BitLy
     - Box
