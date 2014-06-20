@@ -281,7 +281,7 @@ public function loginWithGoogle() {
 		// get googleService authorization
 		$url = $googleService->getAuthorizationUri();
 		
-		// return to facebook login url
+		// return to google login url
 		return Redirect::to( (string)$url );
 	}
 }
