@@ -7,26 +7,20 @@
 
 namespace Artdarek\OAuth;
 
-use Illuminate\Support\ServiceProvider;
-
+use \App;
 use \Config;
 use \URL;
 
 use \OAuth\ServiceFactory;
 use \OAuth\Common\Consumer\Credentials;
+use \OAuth\Common\Storage\SymfonySession;
 
-class OAuth
-{
+class OAuth {
+
     /**
      * @var ServiceFactory
      */
     private $_serviceFactory;
-
-    /**
-     * Storege name from config
-     * @var string
-     */
-    private $_storage_name = 'Session';
 
     /**
      * Client ID from config
@@ -53,10 +47,12 @@ class OAuth
      */
     public function __construct(ServiceFactory $serviceFactory = null)
     {
-        if (null === $serviceFactory) {
+        if (is_null($serviceFactory))
+        {
             // Create the service factory
             $serviceFactory = new ServiceFactory();
         }
+
         $this->_serviceFactory = $serviceFactory;
     }
 
@@ -65,22 +61,22 @@ class OAuth
      *
      * @param string $service
      */
-    public function setConfig( $service )
+    public function setConfig($service)
     {
         // if config/oauth-4-laravel.php exists use this one
-        if ( Config::get('oauth-4-laravel.consumers') != null ) {
-
-            $this->_storage_name = Config::get('oauth-4-laravel.storage', 'Session');
+        if ( Config::get('oauth-4-laravel.consumers') != null )
+        {
             $this->_client_id = Config::get("oauth-4-laravel.consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel.consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array() );
+            $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array());
+        }
 
-        // esle try to find config in packages configs
-        } else {
-            $this->_storage_name = Config::get('oauth-4-laravel::storage', 'Session');
+        // try to find config in packages configs
+        else
+        {
             $this->_client_id = Config::get("oauth-4-laravel::consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel::consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array() );
+            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array());
         }
     }
 
@@ -90,10 +86,11 @@ class OAuth
      * @param string $storageName
      * @return OAuth\Common\\Storage
      */
-    public function createStorageInstance($storageName)
+    public function createStorageInstance()
     {
-        $storageClass = "\\OAuth\\Common\\Storage\\$storageName";
-        $storage = new $storageClass();
+        // get the laravel session instance and wrap it into a storage instance
+        $session = App::make('session')->driver();
+        $storage = new SymfonySession($session);
 
         return $storage;
     }
@@ -116,13 +113,13 @@ class OAuth
      * @param  array  $scope
      * @return \OAuth\Common\Service\AbstractService
      */
-    public function consumer( $service, $url = null, $scope = null )
+    public function consumer($service, $url = null, $scope = null)
     {
         // get config
-        $this->setConfig( $service );
+        $this->setConfig($service);
 
         // get storage object
-        $storage = $this->createStorageInstance( $this->_storage_name );
+        $storage = $this->createStorageInstance();
 
         // create credentials object
         $credentials = new Credentials(

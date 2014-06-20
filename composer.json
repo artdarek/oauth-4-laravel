@@ -13,17 +13,17 @@
         }
     ],
     "require": {
-        "php": ">=5.3",     
+        "php": ">=5.3",
         "lusitanian/oauth": "~0.3"
     },
     "require-dev": {
-        "illuminate/support": "~4"
-    },    
+        "illuminate/support": "~4",
+        "orchestra/testbench": "2.2.*"
+    },
     "require-all": true,
-    "autoload": {    
+    "autoload": {
         "psr-0": {
             "Artdarek\\OAuth": "src/"
         }
-    },    
-    "minimum-stability": "dev"    
+    }
 }

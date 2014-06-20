@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @author     Dariusz Prząda <artdarek@gmail.com>
  * @copyright  Copyright (c) 2013
@@ -9,8 +9,7 @@ namespace Artdarek\OAuth;
 
 use Illuminate\Support\ServiceProvider;
 
-class OAuthServiceProvider extends ServiceProvider 
-{
+class OAuthServiceProvider extends ServiceProvider {
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -36,14 +35,12 @@ class OAuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-	    // Register 'oauth'
-		    $this->app['oauth'] = $this->app->share(function($app)
-		    {
-                // create oAuth instance
-                	$oauth = new OAuth();
-        		// return oAuth instance
-		        	return $oauth;
-		    });
+        // Register 'oauth'
+        $this->app['oauth'] = $this->app->share(function($app)
+        {
+            // create oAuth instance
+            return new OAuth();
+        });
     }
 
     /**
