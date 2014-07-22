@@ -295,8 +295,8 @@ Add your Twitter credentials to ``app/config/packages/artdarek/oauth-4-laravel/c
 
 ```php
 'Twitter' => array(
-    'client_id'     => 'Your Google client ID',
-    'client_secret' => 'Your Google Client Secret',
+    'client_id'     => 'Your Twitter client ID',
+    'client_secret' => 'Your Twitter Client Secret',
     // No scope - oauth1 doesn't need scope
 ),	
 ```
@@ -309,7 +309,7 @@ public function loginWithTwitter() {
 	$token = Input::get( 'oauth_token' );
 	$verify = Input::get( 'oauth_verifier' );
 	
-	// get google service
+	// get twitter service
 	$tw = OAuth::consumer( 'Twitter' );
 	
 	// check if code is valid
@@ -317,7 +317,7 @@ public function loginWithTwitter() {
 	// if code is provided get user data and sign in
 	if ( !empty( $token ) && !empty( $verify ) ) {
 	
-		// This was a callback request from google, get the token
+		// This was a callback request from twitter, get the token
 		$token = $tw->requestAccessToken( $token, $verify );
 		
 		// Send a request with it
