@@ -117,6 +117,7 @@ $ php artisan config:publish artdarek/oauth-4-laravel
 Create configuration file manually in config directory ``app/config/oauth-4-laravel.php`` and put there code from below.
 
 ```php
+<?php
 return array( 
 	
 	/*
