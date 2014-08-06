@@ -127,11 +127,6 @@ return array(
 	*/
 
 	/**
-	 * Storage
-	 */
-	'storage' => 'Session', 
-
-	/**
 	 * Consumers
 	 */
 	'consumers' => array(
