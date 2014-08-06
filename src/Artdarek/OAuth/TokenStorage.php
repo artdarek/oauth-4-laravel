@@ -100,5 +100,50 @@ class TokenStorage implements TokenStorageInterface
 
         return $this;
     }
+    
+    /**
+     * {@inheritDoc}
+     */    
+    public function storeAuthorizationState($service, $state)
+    {
+
+        return $this;    
+    }
+    
+    /**
+     * {@inheritDoc}
+     */    
+    public function hasAuthorizationState($service)
+    {
+
+        return $this;    
+    }
+
+    /**
+     * {@inheritDoc}
+     */    
+    public function retrieveAuthorizationState($service)
+    {
+
+        return $this;    
+    }
+    
+    /**
+     * {@inheritDoc}
+     */    
+    public function clearAuthorizationState($service)
+    {
+
+        return $this;    
+    }
+    
+    /**
+     * {@inheritDoc}
+     */    
+    public function clearAllAuthorizationStates()
+    {
+
+        return $this;    
+    }    
 }
 
