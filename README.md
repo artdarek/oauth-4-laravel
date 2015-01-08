@@ -399,7 +399,49 @@ In your Controller use the following code:
     }
 
 ```
+###Yahoo:
 
+Configuration:
+Add your Yahoo credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
+
+```php
+'Yahoo' => array(
+            'client_id'     => 'Your Yahoo API KEY',
+            'client_secret' => 'Your Yahoo API Secret',  
+),	
+```
+In your Controller use the following code:
+
+```php
+
+public function loginWithYahoo() {
+   // get data from input
+   	$token = Input::get( 'oauth_token' );
+    $verify = Input::get( 'oauth_verifier' );
+    // get yahoo service
+    $yh = OAuth::consumer( 'Yahoo' );
+
+    // if code is provided get user data and sign in
+    if ( !empty( $token ) && !empty( $verify ) ) {
+				// This was a callback request from yahoo, get the token
+				$token = $yh->requestAccessToken( $token, $verify );
+				$xid = array($token->getExtraParams());
+				$result = json_decode( $yh->request( 'https://social.yahooapis.com/v1/user/'.$xid[0]['xoauth_yahoo_guid'].'/profile?format=json' ), true );	
+                
+                dd($result);								
+    }
+    // if not ask for permission first
+    else {
+        // get request token
+        $reqToken = $yh->requestRequestToken();
+        // get Authorization Uri sending the request token
+        $url = $yh->getAuthorizationUri(array('oauth_token' => $reqToken->getRequestToken()));
+        // return to yahoo login url
+        return Redirect::to( (string)$url );
+    }
+}
+
+```
 ### More usage examples:
 
 For examples go [here](https://github.com/Lusitanian/PHPoAuthLib/tree/master/examples)
