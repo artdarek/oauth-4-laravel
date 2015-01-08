@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @author     Dariusz Prząda <artdarek@gmail.com>
  * @copyright  Copyright (c) 2013
@@ -9,8 +9,7 @@ namespace Artdarek\OAuth\Facade;
 
 use Illuminate\Support\Facades\Facade;
 
-class OAuth extends Facade 
-{
+class OAuth extends Facade {
 
     /**
      * Get the registered name of the component.
