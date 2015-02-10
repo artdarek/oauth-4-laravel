@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-return array( 
-	
+return [
+
 	/*
 	|--------------------------------------------------------------------------
 	| oAuth Config
@@ -11,22 +11,19 @@ return array(
 	/**
 	 * Storage
 	 */
-	'storage' => 'Session', 
+	'storage' => 'Session',
 
 	/**
 	 * Consumers
 	 */
-	'consumers' => array(
+	'consumers' => [
 
-		/**
-		 * Facebook
-		 */
-        'Facebook' => array(
-            'client_id'     => '',
-            'client_secret' => '',
-            'scope'         => array(),
-        ),		
+		'Facebook' => [
+			'client_id'     => '',
+			'client_secret' => '',
+			'scope'         => [],
+		],
 
-	)
+	]
 
-);
+];
