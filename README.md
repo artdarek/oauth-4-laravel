@@ -3,6 +3,8 @@
 oauth-5-laravel is a simple laravel 5 service provider (wrapper) for [Lusitanian/PHPoAuthLib](https://github.com/Lusitanian/PHPoAuthLib) 
 which provides oAuth support in PHP 5.4+ and is very easy to integrate with any project which requires an oAuth client.
 
+Was first developed by [Artdarek](https://github.com/artdarek/oauth-4-laravel) for Laravel 4 and I ported it to Laravel 5.
+
 ---
  
 - [Supported services](#supported-services)
