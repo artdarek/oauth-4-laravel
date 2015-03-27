@@ -155,8 +155,9 @@ return array(
 Add your credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php`` or ``app/config/oauth-4-laravel.php`` (depending on which option of configuration you choose)
 
 
-The `Storage` attribute is optional and defaults to `Session`. 
-Other [options](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/Common/Storage).
+The `Storage` attribute is optional and defaults to `Session`. In addition to the 
+[other options](https://github.com/Lusitanian/PHPoAuthLib/tree/master/src/OAuth/Common/Storage)
+provided by PHPoAuthLib, there is an additional session driver called `LaravelSession` which will use whatever is configured for Laravels own session driver.
 
 ## Usage
 
