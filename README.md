@@ -82,7 +82,7 @@ Register the service provider within the ```providers``` array found in ```confi
 'providers' => [
 	// ...
 	
-	'Artdarek\OAuth\OAuthServiceProvider',
+	Artdarek\OAuth\OAuthServiceProvider::class,
 ]
 ```
 
@@ -93,7 +93,7 @@ Add an alias within the ```aliases``` array found in ```config/app.php```:
 'aliases' => [
 	// ...
 	
-	'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
+	'OAuth'     => Artdarek\OAuth\Facade\OAuth::class,
 ]
 ```
 
