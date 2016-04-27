@@ -24,7 +24,7 @@ class OAuth {
      *
      * @var string
      */
-    private $_storage_name = 'Session';
+    private $_storageClass = '\\OAuth\\Common\\Storage\\Session';
 
     /**
      * Client ID from config
@@ -73,7 +73,7 @@ class OAuth {
         if (Config::get('oauth-5-laravel.consumers') != null)
         {
 
-            $this->_storage_name  = Config::get('oauth-5-laravel.storage', 'Session');
+            $this->_storageClass  = Config::get('oauth-5-laravel.storage', $this->_storageClass);
             $this->_client_id     = Config::get("oauth-5-laravel.consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-5-laravel.consumers.$service.client_secret");
             $this->_scope         = Config::get("oauth-5-laravel.consumers.$service.scope", []);
@@ -82,7 +82,7 @@ class OAuth {
         }
         else
         {
-            $this->_storage_name  = Config::get('oauth-5-laravel::storage', 'Session');
+            $this->_storageClass  = Config::get('oauth-5-laravel::storage', $this->_storageClass);
             $this->_client_id     = Config::get("oauth-5-laravel::consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-5-laravel::consumers.$service.client_secret");
             $this->_scope         = Config::get("oauth-5-laravel::consumers.$service.scope", []);
@@ -96,10 +96,9 @@ class OAuth {
      *
      * @return OAuth\Common\\Storage
      */
-    public function createStorageInstance($storageName)
+    public function createStorageInstance($storageClass)
     {
-        $storageClass = "\\OAuth\\Common\\Storage\\$storageName";
-        $storage      = new $storageClass();
+        $storage = new $storageClass();
 
         return $storage;
     }
@@ -130,7 +129,7 @@ class OAuth {
         $this->setConfig($service);
 
         // get storage object
-        $storage = $this->createStorageInstance($this->_storage_name);
+        $storage = $this->createStorageInstance($this->_storageClass);
 
         // create credentials object
         $credentials = new Credentials(
