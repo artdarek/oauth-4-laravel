@@ -120,6 +120,9 @@ Create configuration file manually in config directory ``config/oauth-5-laravel.
 
 ```php
 <?php
+
+use OAuth\Common\Storage\Session;
+
 return [ 
 	
 	/*
@@ -131,7 +134,7 @@ return [
 	/**
 	 * Storage
 	 */
-	'storage' => 'Session', 
+	'storage' => new Session(), 
 
 	/**
 	 * Consumers
