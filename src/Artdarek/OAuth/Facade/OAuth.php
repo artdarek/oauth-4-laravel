@@ -15,5 +15,5 @@ class OAuth extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'oauth'; }
+    protected static function getFacadeAccessor() { return 'Artdarek\OAuth\OAuth'; }
 }
