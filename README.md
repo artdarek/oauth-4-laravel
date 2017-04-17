@@ -176,7 +176,7 @@ $fb = OAuth::consumer('Facebook','http://url.to.redirect.to');
 
 ## Usage examples
 
-###Facebook:
+### Facebook:
 
 Configuration:
 Add your Facebook credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
@@ -235,7 +235,7 @@ public function loginWithFacebook() {
 
 }
 ```
-###Google:
+### Google:
 
 Configuration:
 Add your Google credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
@@ -289,7 +289,7 @@ public function loginWithGoogle() {
 ```
 
 
-###Twitter:
+### Twitter:
 
 Configuration:
 Add your Twitter credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
@@ -348,7 +348,7 @@ public function loginWithTwitter() {
 
 
 
-###Linkedin:
+### Linkedin:
 
 Configuration:
 Add your Linkedin credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
@@ -399,7 +399,7 @@ In your Controller use the following code:
     }
 
 ```
-###Yahoo:
+### Yahoo:
 
 Configuration:
 Add your Yahoo credentials to ``app/config/packages/artdarek/oauth-4-laravel/config.php``
