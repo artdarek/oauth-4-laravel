@@ -111,7 +111,7 @@ your ``config`` directory (option 2).
 Create configuration file for package using artisan command
 
 ```
-$ php artisan vendor:publish
+$ php artisan vendor:publish --provider="Artdarek\OAuth\OAuthServiceProvider"
 ```
 
 #### Option 2
