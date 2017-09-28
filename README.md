@@ -58,18 +58,10 @@ To learn more about Lusitanian/PHPoAuthLib go [here](https://github.com/Lusitani
 
 ## Installation
 
-Add oauth-4-laravel to your composer.json file:
+Use [composer](http://getcomposer.org) to install this package.
 
 ```
-"require": {
-  "artdarek/oauth-4-laravel": "dev-master"
-}
-```
-
-Use composer to install this package.
-
-```
-$ composer update
+$ composer require artdarek/oauth-4-laravel:dev-master
 ```
 
 ### Registering the Package
