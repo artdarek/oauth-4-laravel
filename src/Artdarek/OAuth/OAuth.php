@@ -75,7 +75,7 @@ class OAuth
             $this->_client_secret = Config::get("oauth-4-laravel.consumers.$service.client_secret");
             $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array() );
 
-        // esle try to find config in packages configs
+        // else try to find config in packages configs
         } else {
             $this->_storage_name = Config::get('oauth-4-laravel::storage', 'Session');
             $this->_client_id = Config::get("oauth-4-laravel::consumers.$service.client_id");
@@ -88,11 +88,15 @@ class OAuth
      * Create storage instance
      *
      * @param string $storageName
-     * @return OAuth\Common\\Storage
+     * @return \OAuth\Common\Storage
      */
     public function createStorageInstance($storageName)
     {
-        $storageClass = "\\OAuth\\Common\\Storage\\$storageName";
+        if ($storageName == "LaravelSession") {
+            $storageClass = "\\Artdarek\\OAuth\\Common\\Storage\\$storageName";
+        } else {
+            $storageClass = "\\OAuth\\Common\\Storage\\$storageName";
+        }
         $storage = new $storageClass();
 
         return $storage;
