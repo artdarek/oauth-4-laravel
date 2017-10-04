@@ -90,10 +90,17 @@ class OAuth
      * @param string $storageName
      * @return OAuth\Common\\Storage
      */
-    public function createStorageInstance($storageName)
+    public function createStorageInstance($storageName, $storageParams = array())
     {
         $storageClass = "\\OAuth\\Common\\Storage\\$storageName";
-        $storage = new $storageClass();
+        //$storage = new $storageClass();
+
+		if (count($storageParams) == 0)
+		   $storage = new $storageClass;
+		else {
+		   $r = new \ReflectionClass($storageClass);
+		   $storage = $r->newInstanceArgs($storageParams);
+		}
 
         return $storage;
     }
@@ -116,13 +123,13 @@ class OAuth
      * @param  array  $scope
      * @return \OAuth\Common\Service\AbstractService
      */
-    public function consumer( $service, $url = null, $scope = null )
+    public function consumer( $service, $url = null, $scope = null, $storageParams = array())
     {
         // get config
         $this->setConfig( $service );
 
         // get storage object
-        $storage = $this->createStorageInstance( $this->_storage_name );
+        $storage = $this->createStorageInstance( $this->_storage_name, $storageParams );
 
         // create credentials object
         $credentials = new Credentials(
