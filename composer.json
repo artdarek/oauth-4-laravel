@@ -25,6 +25,16 @@
         "illuminate/support": "~5"
     },    
     "require-all": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Artdarek\\OAuth\\OAuthServiceProvider"
+            ],
+            "aliases": {
+                "OAuth" : "Artdarek\\OAuth\\Facade\\OAuth"
+            }
+        }
+    },
     "autoload": {    
         "psr-0": {
             "Artdarek\\OAuth": "src/"
