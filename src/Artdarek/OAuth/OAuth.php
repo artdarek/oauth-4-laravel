@@ -24,28 +24,28 @@ class OAuth {
      *
      * @var string
      */
-    private $_storageClass = '\\OAuth\\Common\\Storage\\Session';
+    private $storageClass = '\\OAuth\\Common\\Storage\\Session';
 
     /**
      * Client ID from config
      *
      * @var string
      */
-    private $_client_id;
+    private $client_id;
 
     /**
      * Client secret from config
      *
      * @var string
      */
-    private $_client_secret;
+    private $client_secret;
 
     /**
      * Scope from config
      *
      * @var array
      */
-    private $_scope = [];
+    private $scope = [];
 
     /**
      * Constructor
@@ -54,8 +54,7 @@ class OAuth {
      */
     public function __construct(ServiceFactory $serviceFactory = null)
     {
-        if (null === $serviceFactory)
-        {
+        if (null === $serviceFactory) {
             // Create the service factory
             $serviceFactory = new ServiceFactory();
         }
@@ -69,24 +68,15 @@ class OAuth {
      */
     public function setConfig($service)
     {
+        $accessor = '::';
         // if config/oauth-4-laravel.php exists use this one
-        if (Config::get('oauth-5-laravel.consumers') != null)
-        {
-
-            $this->_storageClass  = Config::get('oauth-5-laravel.storage', $this->_storageClass);
-            $this->_client_id     = Config::get("oauth-5-laravel.consumers.$service.client_id");
-            $this->_client_secret = Config::get("oauth-5-laravel.consumers.$service.client_secret");
-            $this->_scope         = Config::get("oauth-5-laravel.consumers.$service.scope", []);
-
-            // esle try to find config in packages configs
+        if (Config::get('oauth-5-laravel.consumers') != null) {
+            $accessor = '.';
         }
-        else
-        {
-            $this->_storageClass  = Config::get('oauth-5-laravel::storage', $this->_storageClass);
-            $this->_client_id     = Config::get("oauth-5-laravel::consumers.$service.client_id");
-            $this->_client_secret = Config::get("oauth-5-laravel::consumers.$service.client_secret");
-            $this->_scope         = Config::get("oauth-5-laravel::consumers.$service.scope", []);
-        }
+        $this->storageClass  = Config::get("oauth-5-laravel{$accessor}storage", $this->storageClass);
+        $this->client_id     = Config::get("oauth-5-laravel{$accessor}consumers.$service.client_id");
+        $this->client_secret = Config::get("oauth-5-laravel{$accessor}consumers.$service.client_secret");
+        $this->scope         = Config::get("oauth-5-laravel{$accessor}consumers.$service.scope", []);
     }
 
     /**
@@ -129,24 +119,22 @@ class OAuth {
         $this->setConfig($service);
 
         // get storage object
-        $storage = $this->createStorageInstance($this->_storageClass);
+        $storage = $this->createStorageInstance($this->storageClass);
 
         // create credentials object
         $credentials = new Credentials(
-            $this->_client_id,
-            $this->_client_secret,
+            $this->client_id,
+            $this->client_secret,
             $url ? : URL::current()
         );
 
         // check if scopes were provided
-        if (is_null($scope))
-        {
+        if (is_null($scope)) {
             // get scope from config (default to empty array)
-            $scope = $this->_scope;
+            $scope = $this->scope;
         }
 
         // return the service consumer object
         return $this->_serviceFactory->createService($service, $credentials, $storage, $scope);
-
     }
 }
