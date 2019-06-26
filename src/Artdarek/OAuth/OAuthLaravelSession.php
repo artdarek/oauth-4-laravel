@@ -84,7 +84,7 @@ class OAuthLaravelSession implements TokenStorageInterface
      */
     public function storeAuthorizationState($service, $state)
     {
-        Session::put('oauth.state.'.$service,$state);
+        Session::put('oauth.state.'.$service, $state);
         return $this;
     }
 
